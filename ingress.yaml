@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: php-demo 
-  namespace: test
+  namespace: jenkins-k8s
 spec:
   rules:
     - host: php.demo.com    
