@@ -5,7 +5,7 @@ metadata:
   namespace: test
 spec:
   rules:
-    - host: php.ctnrs.com
+    - host: php.demo.com    
       http:
         paths:
         - path: /

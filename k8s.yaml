@@ -1,8 +1,8 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: php-demo
-  namespace: test
+  namespace: jenkins-k8s
 spec:
   replicas: 2
   selector:
@@ -15,30 +15,17 @@ spec:
         project: www
         app: php-demo
     spec:
-      imagePullSecrets:
-      - name: registry-pull-secret
       containers:
       - name: nginx 
-        image: 192.168.73.136/test/php-demo:v2
-        imagePullPolicy: Always
+        image: firexuxiaoman/php-nginx:<BUILD_TAG>
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
           name: web
           protocol: TCP
-        resources:
-          requests:
-            cpu: 0.5
-            memory: 256Mi
-          limits:
-            cpu: 1
-            memory: 1Gi
-        resources:
-          requests:
-            cpu: 0.5
-            memory: 256Mi
-          limits:
-            cpu: 1
-            memory: 1Gi
+          env:
+        - name: branch
+          value: <BRANCH_NAME>
         livenessProbe:
           httpGet:
             path: /status.php

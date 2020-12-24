@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: php-demo 
-  namespace: test
+  namespace: jenkins-k8s
 spec:
   selector:
     project: www
