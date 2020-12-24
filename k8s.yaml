@@ -3,24 +3,24 @@ kind: Deployment
 metadata:
   name: php-demo
   namespace: jenkins-k8s
+  labels:
+    app: php-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      project: www
       app: php-demo
   template:
     metadata:
       labels:
-        project: www
         app: php-demo
     spec:
       containers:
-      - name: nginx 
+      - name: php-demo
         image: firexuxiaoman/php-demo:<BUILD_TAG>
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080  #容器端口
-          env:
+        - containerPort: 8080
+        env:
         - name: branch
           value: <BRANCH_NAME>

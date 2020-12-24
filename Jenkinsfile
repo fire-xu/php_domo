@@ -30,9 +30,9 @@ node('haimaxy-jnlp') {
         }
     stage('Deploy') {
         echo 'Deploy Stage'
-		if (env.BRANCH_NAME == 'main') {
-            input "确认要部署线上环境吗？"
-        }
+//		if (env.BRANCH_NAME == 'main') {
+//           input "确认要部署线上环境吗？"
+  //      }
         sh "sed -i 's/<BUILD_TAG>/${build_tag}/' k8s.yaml"
         sh "kubectl apply -f k8s.yaml --record"
         sh "kubectl apply -f ingress.yaml --record"
