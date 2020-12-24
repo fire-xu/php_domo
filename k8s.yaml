@@ -4,7 +4,7 @@ metadata:
   name: php-demo
   namespace: jenkins-k8s
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       project: www
@@ -20,7 +20,7 @@ spec:
         image: firexuxiaoman/php-nginx:<BUILD_TAG>
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
+        - containerPort: 80  #容器端口
           name: web
           protocol: TCP
           env:
