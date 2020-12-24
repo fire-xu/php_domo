@@ -19,13 +19,13 @@ node('haimaxy-jnlp') {
     }
  stage('Build') {
         echo "3.Build Docker Image Stage"
-    sh "cd wordpress && docker build -t firexuxiaoman/python-demo:${build_tag} ."
+    sh "cd wordpress && docker build -t firexuxiaoman/php-demo:${build_tag} ."
     }
     stage('Push') {
         echo "4.Push Docker Image Stage"
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
-        sh "docker push firexuxiaoman/python-demo:${build_tag}"
+        sh "docker push firexuxiaoman/php-demo:${build_tag}"
     }
         }
     stage('Deploy') {
