@@ -15,9 +15,11 @@ spec:
       labels:
         app: php-demo
     spec:
+      imagePullSecrets:
+      - name: harbor
       containers:
       - name: php-demo
-        image: firexuxiaoman/php-demo:<BUILD_TAG>
+        image: reg.analyticservice.net/jenkins/php-demo:<BUILD_TAG>
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
